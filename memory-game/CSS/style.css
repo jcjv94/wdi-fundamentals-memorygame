@@ -94,3 +94,19 @@ font-size: 0;
 	color: #F15B31;
 	font-weight: 700px;
 }
+
+#btnClear{
+	display: block;
+	margin: 0 auto;
+	background-color: #708090;
+	color: whitesmoke;
+	height: 30px;
+	width: 100px;
+	text-transform: uppercase;
+	letter-spacing: .1em;
+	font-size: 12px;
+	border: 1px solid black;
+	border-radius: 7px;
+
+
+}

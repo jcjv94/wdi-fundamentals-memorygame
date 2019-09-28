@@ -16,7 +16,7 @@ const cards = [
   cardImage: 'images/king-of-diamonds.png'
   }
   ];
-let cardsInPlay = [];
+var cardsInPlay = [];
 
 var checkForMatch = function(){
   if (cardsInPlay[0] === cardsInPlay[1]) {
@@ -26,26 +26,46 @@ var checkForMatch = function(){
     }
 }
 
-var flipCard = function(){
+var flipCard = function()
+{
   var cardId = this.getAttribute("data-id");
   var card = cards[cardId];
   this.setAttribute("src", card.cardImage);
-  this.setAttribute("class", "clicked");
   console.log(this);
   cardsInPlay.push(card.rank);
-  if (cardsInPlay.length === 2) {
-  checkForMatch();
-}
+  if (cardsInPlay.length === 2) 
+  {
+    checkForMatch();
   }
+}
+
+var clearGame = function ()
+{
+  var allCards = document.getElementsByClassName("cardElement");
+  for (var i = 0; i < allCards.length; i++)
+  {
+    allCards[i].setAttribute("src","images/back.png");
+  }
+}
 
   var createBoard = function(){
+    
+    var board = document.getElementById("game-board");
+
     for (var i = 0; i < cards.length; i++) {
       var cardElement = document.createElement("img");
+      cardElement.setAttribute("class", "cardElement");
       cardElement.setAttribute("src", "images/back.png");
-      cardElement.setAttribute("data-id", i)
+      cardElement.setAttribute("data-id", i);
       cardElement.addEventListener("click", flipCard);
-      var board = document.getElementById("game-board");
       board.appendChild(cardElement);
     }
+
+    var button = document.createElement("button");
+    button.setAttribute("id", "btnClear");
+    button.innerHTML = "Reset";
+    button.addEventListener("click", clearGame);
+    board.appendChild(button);
   }
+  
   createBoard();
